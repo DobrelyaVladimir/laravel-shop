@@ -7,7 +7,7 @@
             @foreach($brands as $brand)
                 <div class="card">
                     <div class="thumbnail">
-                        <a href="{{route('brand', $brand->id)}}"><img style="display:block;width: 100%" src="{{asset($brand->image_path)}}" alt="{{$brand->name}}"></a>
+                        <a href="{{route('brand', $brand->id)}}"><img style="display:block;width: 100%" src="{{asset(\Illuminate\Support\Facades\Storage::url($brand->image_path))}}" alt="{{$brand->name}}"></a>
                         <div class="caption">
                             <a href="{{route('brand', $brand->id)}}"><h3>{{$brand->name}}</h3></a>
                         </div>

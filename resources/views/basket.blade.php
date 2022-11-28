@@ -19,7 +19,7 @@
                    <tr>
                        <td>
                            <a href="{{route('product', ['product'=>$product])}}">
-                               <img height="56px" src="{{$product->image_path}}">{{$product->brand->name}} {{$product->name}}
+                               <img height="56px" src="{{\Illuminate\Support\Facades\Storage::url($product->image_path)}}">{{$product->brand->name}} {{$product->name}}
                            </a>
                        </td>
                        <td><span class="badge rounded-pill bg-dark">{{$product->pivot->count}}</span>

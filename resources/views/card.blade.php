@@ -1,15 +1,15 @@
 <div class="col">
     <div class="card h-100 p-1" >
 <div class="overflow-hidden">
-        <img class="card-img m-auto" style="display:block;max-height:250px;width: max-content"
-             src="{{asset($product->image_path)}}"
-             alt="{{$product->name}}">
+    <a href="{{route('product', $product)}}"><img class="card-img m-auto" style="display:block;max-height:250px;width: max-content"
+             src="{{asset(\Illuminate\Support\Facades\Storage::url($product->image_path))}}"
+             alt="{{$product->name}}"></a>
 </div>
         <div class="card-body">
-            <h3>{{$product->brand->name}} {{$product->name}}</h3>
+            <h4>{{$product->brand->name}} {{$product->name}}</h4>
             <p class="fw-bold fs-5 text-success">Ціна: {{$product->price}} грн</p>
             <p>
-            <form action="{{route('basket-add', $product)}}" method="post">
+            <form action="{{route('basket-add', $product->id)}}" method="post">
                 @csrf
                 <button type="submit" class="btn btn-primary">В кошик</button>
                 <a href="{{route('product', $product)}}" class="btn btn-secondary" role="button">Подробиці</a>

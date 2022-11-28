@@ -18,4 +18,7 @@ class Order extends Model
         }
         return $summ;
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

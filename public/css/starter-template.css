@@ -56,9 +56,7 @@ footer {
     padding: 10px;
     overflow: hidden;
 }
-/*.card-body {*/
-/*    height: 370px;*/
-/*}*/
+
 .hidden-menu {
     height: 0;
     overflow: hidden;
@@ -69,7 +67,7 @@ footer {
     position: absolute;
     z-index: 100;
     background-color: white;
-    top: 440px;
+    top: 98%;
     left: -1px;
     right: -15px;
     border: 1px solid #ddd;

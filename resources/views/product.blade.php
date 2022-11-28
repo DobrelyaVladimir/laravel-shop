@@ -5,7 +5,9 @@
         <div class="row row-cols-sm-1">
             <div class="col-sm-6 col-md-6">
                 <div class="p-4">
-                    <img class="img-fluid rounded-start" src="{{asset($product->image_path)}}" alt="{{$product->name}}">
+                    <img class="img-fluid rounded-start" style="max-height: 500px"
+                         src="{{asset(\Illuminate\Support\Facades\Storage::url($product->image_path))}}"
+                         alt="{{$product->name}}">
                 </div>
             </div>
             <div class="col-sm-6 col-md-6">
@@ -27,5 +29,13 @@
                 </div>
             </div>
         </div>
+    </div>
+    <h3>Більше моделей від інших виробників</h3>
+    <div class="row my-2">
+            @foreach($products as $product)
+            <div class="col-6 col-lg-3">
+                @include('card', ['$product'=>$product])
+            </div>
+            @endforeach
     </div>
 @endsection

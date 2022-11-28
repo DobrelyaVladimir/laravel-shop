@@ -16,6 +16,8 @@ class BasketController extends Controller
         return view('basket', ['order' => $order]);
     }
     public function basketConfirm(Request $request){
+        $idChannel='-1001823775798';
+        $botToken = '5645660232:AAF2yQK7oTlalvJc4NRS_KOOMQOzUXDEksE';
         $orderId = session('orderId');
         if (is_null($orderId)){
             return redirect()->route('index');
@@ -27,6 +29,13 @@ class BasketController extends Controller
             $order->status = 1;
             $order->save();
             session()->forget('orderId');
+            $message = "Номер замовлення: $order->id" . "\n Ім'я: $request->name" . "\n Телефон: $request->phone";
+            $message = urlencode($message);
+            try {
+                file_get_contents("https://api.telegram.org/bot$botToken/sendMessage?chat_id=$idChannel&text=".$message);
+            }
+            catch (\Exception $e){
+            }
         }
         return redirect()->route('index');
     }
@@ -42,8 +51,8 @@ class BasketController extends Controller
     public function basketAdd($productId){
         $orderId = session('orderId');
         if (is_null($orderId)) {
-            $order = Order::create()->id;
-            session(['orderId' => $order]);
+            $order = Order::create();
+            session(['orderId' => $order->id]);
         } else {
             $order = Order::find($orderId);
         }
